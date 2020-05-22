@@ -17,8 +17,7 @@ var TELEM_STATES_COLLECTION = "telemetry-states";
 var app = express();
 
 //Database connector
-//console.log(process.env.MONGODB_URI)
-//mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true})
 
 app.use(bodyParser.json());
 app.use((req,res,next) =>{
@@ -49,26 +48,11 @@ var server = app.listen(process.env.PORT || 5000, function () {
 });
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
-//var db = mongoose.connection;
+var db = mongoose.connection;
 var telemetry = {};
 
 // spreadsheet key is the long id in the sheets URL
 const doc = new GoogleSpreadsheet('1GZJ5CM8FElwuoiOX1xoMh6s41G7QeMviRom769Jf6h0');
-
-
-// Connect to the database before starting the application server.
-/*
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log("Database connection ready");
-    // Initialize the app.
-    var server = app.listen(process.env.PORT || 5000, function () {
-        var port = server.address().port;
-        console.log("App now running on port", port);
-        //setInterval(getTelemetry, 1500);
-    });
-});
-*/
 
 //app.use('/api/simulation', simulationRouter)
 //app.use('/api/simulation/', uiaSimulationRouter)
