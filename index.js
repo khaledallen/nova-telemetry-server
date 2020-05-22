@@ -53,7 +53,7 @@ var server = app.listen(process.env.PORT || 5000, function () {
 var telemetry = {};
 
 // spreadsheet key is the long id in the sheets URL
-//const doc = new GoogleSpreadsheet('1GZJ5CM8FElwuoiOX1xoMh6s41G7QeMviRom769Jf6h0');
+const doc = new GoogleSpreadsheet('1GZJ5CM8FElwuoiOX1xoMh6s41G7QeMviRom769Jf6h0');
 
 
 // Connect to the database before starting the application server.
@@ -98,7 +98,6 @@ app.get("/api/simulation/state", function(req, res) {
  */
 
 app.get("/api/utils/procedures", async function(req, res) {
-/*
     const TASK_SHEET = 0;
     const PROCEDURE_SHEET = 1;
     const STEP_SHEET = 2;
@@ -163,7 +162,6 @@ app.get("/api/utils/procedures", async function(req, res) {
     //console.log(responseObject);
     //console.log(JSON.stringify(responseObject.tasks));
 
-*/
-    res.status(200).send("Procedures");
+    res.status(200).json(responseObject);
 });
 
